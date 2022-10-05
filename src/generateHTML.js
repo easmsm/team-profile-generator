@@ -19,11 +19,16 @@ const generateEmployee = function (employee) {
 // Engineer Card
 const generateEngineer = function (engineer) {
     return `
-    <div>
-        <div>
-            <div>
+    <div class="col-sm-6 col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>${engineer.name}</h2>
+                <h5>Team Member</h5>
             </div>
-            <div>
+            <div class="card-body">
+                <p class="id">ID: ${engineer.id}</p>
+                <p class="email">Email: ${engineer.email}</p>
+                <p class="github">GitHub: ${engineer.github}</p>
             </div>
         </div>
     </div>
@@ -33,11 +38,16 @@ const generateEngineer = function (engineer) {
 // Intern Card
 const generateIntern = function (intern) {
     return `
-    <div>
-        <div>
-            <div>
+    <div class="col-sm-6 col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>${intern.name}</h2>
+                <h5>Team Member</h5>
             </div>
-            <div>
+            <div class="card-body">
+                <p class="id">ID: ${intern.id}</p>
+                <p class="email">Email: ${intern.email}</p>
+                <p class="school">Email: ${intern.school}</p>
             </div>
         </div>
     </div>
@@ -48,11 +58,16 @@ const generateIntern = function (intern) {
 // Manager Card
 const generateManager = function (manager) {
     return `
-    <div>
-        <div>
-            <div>
+    <div class="col-sm-6 col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>${manager.name}</h2>
+                <h5>Team Member</h5>
             </div>
-            <div>
+            <div class="card-body">
+                <p class="id">ID: ${manager.id}</p>
+                <p class="email">Email: ${manager.email}</p>
+                <p class="officeNumber">Office Phone: ${manager.officeNumber}</p>
             </div>
         </div>
     </div>
