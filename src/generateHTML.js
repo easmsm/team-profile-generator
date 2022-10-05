@@ -75,7 +75,43 @@ const generateManager = function (manager) {
 }
 
 
-// push to the page
+// push to the page - will need to be based of roles to differentiate from the different types of cards
+    generateHTML = (data) => {
+        pageArray = [];
+
+        for (let i=0; i < data.length; i++) {
+            const employee = data[i];
+            //default role will be employee
+            const role = employee.getRole();
+
+            //role specific 
+
+            //not sure if this is needed now that I realize I have a default of employee
+            if (role === 'Employee') {
+                const employeeCard = generateEmployee(employee);
+                pageArray.push(employeeCard);
+            }
+        
+             if (role === 'Engineer') {
+                const engineerCard = generateEngineer(employee);
+                pageArray.push(engineerCard);
+            }
+        
+            if (role === 'Intern') {
+                const internCard = generateIntern(employee);
+                pageArray.push(internCard);
+            }
+        
+            if (role === 'Manager') {
+                const employeeCard = generateManager(employee);
+                pageArray.push(ManagerCard);
+            }
+        }
+
+
+
+
+    }
 
 
 // generate the html 
