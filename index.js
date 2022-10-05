@@ -43,7 +43,58 @@ const addEmployee = () => {
 
 };
     //the source of the validation function for email that I'm using: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
-    
+    //adding an additional team lead role to set the team up under and to call at the end of team creation
+    const addTeamLead = () => {
+        return inquirer.prompt ([
+            {
+                type: 'input',
+                name: 'name',
+                message: "Who is the Team Lead",
+                validate: nameInput => {
+                    if (nameInput) {
+                        return true;
+                    } else {
+                        console.log("Who are we talking about, again?");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: "Please enter the team lead's ID."
+            },
+            {
+                type: 'input',
+                name:'email',
+                message: "Please enter the team lead's email!",
+                validate: email => {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                        if (valid) {
+                            console.log('Thanks!')
+                            return true;
+                        } else {
+                            console.log ('Please enter an email!')
+                            return false; 
+                        }
+                    }
+            }
+    ])
+    .then(teamLeadInput => {
+        console.log(teamLeadInput)
+        const {name, id, email, confirmAddEmployees} = teamLeadInput;
+
+        teamArray.push(teamLead);
+        if(confirmAddEmployees){
+            addEmployee();
+        } else {
+            console.log(teamArray)
+            const html = generateHTML(teamArray)
+            writeFile(html)
+        }
+    })
+};
+
     //start with base/default employee
     const employeeInput = () => {
         return inquirer.prompt ([
@@ -295,8 +346,8 @@ const addEmployee = () => {
     })
 }
 
-//call function to add whatever employee
-addEmployee()
+//call function to add whatever employees
+addTeamLead()
 
 // write the actual HTML file - pulled from async work
 const writeFile = html => {
