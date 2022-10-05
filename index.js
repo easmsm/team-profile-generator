@@ -5,6 +5,7 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const teamLead = require('./lib/teamLead');
 
 const generateHTML = require('./src/generateHTML');
 const teamArray = [];
@@ -43,57 +44,7 @@ const addEmployee = () => {
 
 };
     //the source of the validation function for email that I'm using: https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
-    //adding an additional team lead role to set the team up under and to call at the end of team creation
-    const addTeamLead = () => {
-        return inquirer.prompt ([
-            {
-                type: 'input',
-                name: 'name',
-                message: "Who is the Team Lead",
-                validate: nameInput => {
-                    if (nameInput) {
-                        return true;
-                    } else {
-                        console.log("Who are we talking about, again?");
-                        return false;
-                    }
-                }
-            },
-            {
-                type: 'input',
-                name: 'id',
-                message: "Please enter the team lead's ID."
-            },
-            {
-                type: 'input',
-                name:'email',
-                message: "Please enter the team lead's email!",
-                validate: email => {
-                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                        if (valid) {
-                            console.log('Thanks!')
-                            return true;
-                        } else {
-                            console.log ('Please enter an email!')
-                            return false; 
-                        }
-                    }
-            }
-    ])
-    .then(teamLeadInput => {
-        console.log(teamLeadInput)
-        const {name, id, email, confirmAddEmployees} = teamLeadInput;
-
-        teamArray.push(teamLead);
-        if(confirmAddEmployees){
-            addEmployee();
-        } else {
-            console.log(teamArray)
-            const html = generateHTML(teamArray)
-            writeFile(html)
-        }
-    })
-};
+    //adding an additional team lead role to set the team up under and to call at the end of team creation - didn't work
 
     //start with base/default employee
     const employeeInput = () => {
@@ -143,7 +94,7 @@ const addEmployee = () => {
         console.log(employeeInput)
         const {name, id, email, confirmAddEmployees} = employeeInput;
 
-        teamArray.push(employee);
+        teamArray.push(employeeInput);
         if(confirmAddEmployees){
             addEmployee();
         } else {
@@ -207,7 +158,7 @@ const addEmployee = () => {
         console.log(engineerInput)
         const {name, id, email, github, confirmAddEmployees} = engineerInput;
 
-        teamArray.push(engineer);
+        teamArray.push(engineerInput);
         if(confirmAddEmployees){
             addEmployee();
         } else {
@@ -272,7 +223,7 @@ const addEmployee = () => {
         console.log(internInput)
         const {name, id, email, school, confirmAddEmployees} = internInput;
 
-        teamArray.push(intern);
+        teamArray.push(internInput);
         if(confirmAddEmployees){
             addEmployee();
         } else {
@@ -335,7 +286,7 @@ const addEmployee = () => {
         console.log(managerInput)
         const {name, id, email, officeNumber, confirmAddEmployees} = managerInput;
 
-        teamArray.push(manager);
+        teamArray.push(managerInput);
         if(confirmAddEmployees){
             addEmployee();
         } else {
@@ -347,7 +298,8 @@ const addEmployee = () => {
 }
 
 //call function to add whatever employees
-addTeamLead()
+// addTeamLead()
+addEmployee()
 
 // write the actual HTML file - pulled from async work
 const writeFile = html => {
