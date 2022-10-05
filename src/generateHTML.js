@@ -1,14 +1,63 @@
-// Employee Card
-
+// Employee Card - just in case an employee doesn't fall into any of the other roles
+const generateEmployee = function (employee) {
+    return `
+    <div class="col-sm-6 col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>${employee.name}</h2>
+                <h5>Team Member</h5>
+            </div>
+            <div class="card-body">
+                <p class="id">ID: ${employee.id}</p>
+                <p class="email">Email: ${employee.email}</p>
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 // Engineer Card
-
+const generateEngineer = function (engineer) {
+    return `
+    <div>
+        <div>
+            <div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 // Intern Card
+const generateIntern = function (intern) {
+    return `
+    <div>
+        <div>
+            <div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 
 // Manager Card
-
+const generateManager = function (manager) {
+    return `
+    <div>
+        <div>
+            <div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 
 // push to the page
@@ -29,6 +78,17 @@
             <link rel ="stylesheet" href="./dist/stylesheet.css"></link>
         </head>
         <body>
+            <header>
+                <nav class ="navbar"> Our Team</nav>
+            </header>
+
+            <main>
+                <div class ="container">
+                    <div class ="row justify-content-center">
+                    ${cards}
+                    </div>
+                </div>
+            </main>
     
         </body>
         </html>
