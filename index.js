@@ -11,7 +11,41 @@ const teamArray = [];
 
 //inquirer prompts - would love to add more logic here in the future to combine these prompts with conditional prompts (add the office number prompt only if the role is manager)
 
+// List to choose role
+const addEmployee = () => {
+    console.log(`
+    ========================================
+            Let's Build Your Team
+    ========================================
+    `);
+
+    return inquirer.prompt ([
+        {
+            type: 'list',
+            name: 'role',
+            message: "Who would you like to add to your team?",
+            choices: ['Employee', 'Engineer', 'Intern', 'Manager']
+        },
+    ])
+    // where to send depending on the type of employee that is chosen
+    .then(employeeType => {
+        if(employeeType.role === 'Employee') {
+            employeeInput()
+        } else if (employeeType.role === 'Engineer') {
+            engineerInput()
+        } else if (employeeType.role === 'Intern') {
+            internInput()
+        } else {
+            managerInput()
+        }
+
+        console.log(employeeType)
+    })
+
+};
+
     //start with base/default employee
+
 
     //engineer prompts
 
