@@ -21,4 +21,15 @@ const teamArray = [];
 
 //function to add the employee
 
-//feed these prompts into the cards
+// write the actual HTML file - pulled from async work
+const writeFile = html => {
+    fs.writeFile('./dist/index.html', html, err => {
+        // prevent errors from keeping us spinning in place
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Your team's profile has been generated! I popped it in the dist folder for your convenience.")
+        }
+    })
+};
