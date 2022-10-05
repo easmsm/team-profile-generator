@@ -1,15 +1,15 @@
 // Employee Card - just in case an employee doesn't fall into any of the other roles
-const generateEmployee = function (employee) {
+const generateEmployee = function (employees) {
     return `
     <div class="col-sm-6 col-md-4">
         <div class="card">
             <div class="card-header">
-                <h2>${employee.name}</h2>
+                <h2>${employees.name}</h2>
                 <h5>Team Member</h5>
             </div>
             <div class="card-body">
-                <p class="id">ID: ${employee.id}</p>
-                <p class="email">Email: ${employee.email}</p>
+                <p class="id">ID: ${employees.id}</p>
+                <p class="email">Email: ${employees.email}</p>
             </div>
         </div>
     </div>
@@ -79,31 +79,31 @@ const generateManager = function (manager) {
         pageArray = [];
 
         for (let i=0; i < data.length; i++) {
-            const employee = data[i];
+            const employees = data[i];
             //default role will be employee
-            const role = employee.getRole();
+            const role = employees.getRole();
 
             //role specific 
 
             //not sure if this is needed now that I realize I have a default of employee
             if (role === 'Employee') {
-                const employeeCard = generateEmployee(employee);
+                const employeeCard = generateEmployee(employees);
                 pageArray.push(employeeCard);
             }
         
              if (role === 'Engineer') {
-                const engineerCard = generateEngineer(employee);
+                const engineerCard = generateEngineer(employees);
                 pageArray.push(engineerCard);
             }
         
             if (role === 'Intern') {
-                const internCard = generateIntern(employee);
+                const internCard = generateIntern(employees);
                 pageArray.push(internCard);
             }
         
             if (role === 'Manager') {
-                const employeeCard = generateManager(employee);
-                pageArray.push(ManagerCard);
+                const employeeCard = generateManager(employees);
+                pageArray.push(managerCard);
             }
         }
 
