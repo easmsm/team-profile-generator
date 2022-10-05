@@ -74,7 +74,6 @@ const generateManager = function (manager) {
     `;
 }
 
-
 // push to the page - will need to be based of roles to differentiate from the different types of cards
     generateHTML = (data) => {
         pageArray = [];
@@ -109,8 +108,11 @@ const generateManager = function (manager) {
         }
 
 
+        //keep all the cards together, and join them to create a page specific to each team
+        const cards = pageArray.join('')
 
-
+        const generateTeam = generateTeamPage(cards);
+        return generateTeam;
     }
 
 
