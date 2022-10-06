@@ -1,15 +1,14 @@
-// Employee Card - just in case an employee doesn't fall into any of the other roles
-const generateEmployee = function (employees) {
+const generateEmployee = function (employee) {
     return `
     <div class="col-sm-6 col-md-4">
         <div class="card">
             <div class="card-header">
-                <h2>${employees.name}</h2>
+                <h2>${employee.name}</h2>
                 <h5>Team Member</h5>
             </div>
             <div class="card-body">
-                <p class="id">ID: ${employees.id}</p>
-                <p class="email">Email: ${employees.email}</p>
+                <p class="id">ID: ${employee.id}</p>
+                <p class="email">Email:<a href="mailto:${employee.email}"> ${employee.email}</a></p>
             </div>
         </div>
     </div>
@@ -27,7 +26,7 @@ const generateEngineer = function (engineer) {
             </div>
             <div class="card-body">
                 <p class="id">ID: ${engineer.id}</p>
-                <p class="email">Email: ${engineer.email}</p>
+                <p class="email">Email:<a href="mailto:${engineer.email}"> ${engineer.email}</a></p>
                 <p class="github">GitHub: ${engineer.github}</p>
             </div>
         </div>
@@ -46,7 +45,7 @@ const generateIntern = function (intern) {
             </div>
             <div class="card-body">
                 <p class="id">ID: ${intern.id}</p>
-                <p class="email">Email: ${intern.email}</p>
+                <p class="email">Email:<a href="mailto:${intern.email}"> ${intern.email}</a></p>
                 <p class="school">Email: ${intern.school}</p>
             </div>
         </div>
@@ -66,7 +65,7 @@ const generateManager = function (manager) {
             </div>
             <div class="card-body">
                 <p class="id">ID: ${manager.id}</p>
-                <p class="email">Email: ${manager.email}</p>
+                <p class="email">Email:<a href="mailto:${manager.email}"> ${manager.email}</a></p>
                 <p class="officeNumber">Office Phone: ${manager.officeNumber}</p>
             </div>
         </div>
@@ -75,37 +74,39 @@ const generateManager = function (manager) {
 }
 
 // push to the page - will need to be based of roles to differentiate from the different types of cards
-    generateHTML = (data) => {
-        pageArray = [];
+   // push array to page 
+generateHTML = (data) => {
 
-        for (let i=0; i < data.length; i++) {
-            const employees = data[i];
-            //default role will be employee
-            const role = employees.getRole();
+    // array for cards 
+    pageArray = [];
 
-            //role specific 
+    for (let i = 0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole(); 
 
-            //not sure if this is needed now that I realize I have a default of employee
-            if (role === 'Employee') {
-                const employeeCard = generateEmployee(employees);
-                pageArray.push(employeeCard);
-            }
-        
-             if (role === 'Engineer') {
-                const engineerCard = generateEngineer(employees);
-                pageArray.push(engineerCard);
-            }
-        
-            if (role === 'Intern') {
-                const internCard = generateIntern(employees);
-                pageArray.push(internCard);
-            }
-        
-            if (role === 'Manager') {
-                const employeeCard = generateManager(employees);
-                pageArray.push(managerCard);
-            }
+
+        // call manager function
+        if (role === 'Manager') {
+            const managerCard = generateManager(employee);
+
+            pageArray.push(managerCard);
         }
+
+        // call engineer function
+        if (role === 'Engineer') {
+            const engineerCard = generateEngineer(employee);
+
+            pageArray.push(engineerCard);
+        }
+
+        // call intern function 
+        if (role === 'Intern') {
+            const internCard = generateIntern(employee);
+
+            pageArray.push(internCard);
+        }
+        
+    }
 
 
         //keep all the cards together, and join them to create a page specific to each team
