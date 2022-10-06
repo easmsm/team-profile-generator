@@ -82,37 +82,34 @@ generateHTML = (data) => {
 
     for (let i = 0; i < data.length; i++) {
         const employee = data[i];
-        const role = employee.getRole(); 
+        const role = employee.getRole();
 
 
-        // call manager function
         if (role === 'Manager') {
             const managerCard = generateManager(employee);
 
             pageArray.push(managerCard);
         }
 
-        // call engineer function
         if (role === 'Engineer') {
             const engineerCard = generateEngineer(employee);
 
             pageArray.push(engineerCard);
         }
 
-        // call intern function 
         if (role === 'Intern') {
             const internCard = generateIntern(employee);
 
             pageArray.push(internCard);
         }
-        
+
     }
 
 
         //keep all the cards together, and join them to create a page specific to each team
         const cards = pageArray.join('')
 
-        const generateTeam = generateTeamPage(cards);
+        const generateTeam = generateProfile(cards);
         return generateTeam;
     }
 
